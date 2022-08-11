@@ -1,0 +1,11 @@
+{
+	"name": "luan/php-mvc",
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/"
+		},
+		"files": [
+			"bootstrap.php"
+		]
+	}
+}
