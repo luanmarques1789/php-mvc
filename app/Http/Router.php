@@ -4,6 +4,7 @@ namespace App\Http;
 
 use \Closure;
 use Exception;
+use ReflectionFunction;
 
 class Router
 {
@@ -72,6 +73,16 @@ class Router
         $params['controller'] = $value;
         unset($params[$key]);
       }
+    }
+
+    // Variáveis da rota
+    $params['variables'] = [];
+
+    // Pattern de validação das variáveis de rotas
+    $varPattern = '/{(.*?)}/';
+    if (preg_match_all($varPattern, $route, $matches)) {
+      $route = preg_replace($varPattern, '(.*?)', $route);
+      $params['variables'] = $matches[1];
     }
 
     // Padrão de validação do URL
@@ -157,9 +168,17 @@ class Router
     // Validação das rotas
     foreach ($this->routes as $routePattern => $method) {
       // Verifica se o URI bate com o padrão de rota
-      if (preg_match($routePattern, $uri)) {
+      if (preg_match($routePattern, $uri, $matches)) {
         // Verifica o método HTTP 
-        if ($method[$httpMethod]) {
+        if (isset($method[$httpMethod])) {
+          // Remove a primeira posição
+          unset($matches[0]);
+
+          // Variáveis processadas
+          $keys = $method[$httpMethod]['variables'];
+          $method[$httpMethod]['variables'] = array_combine($keys, $matches);
+          $method[$httpMethod]['variables']['request'] = $this->request;
+
           return $method[$httpMethod];
         }
 
@@ -186,6 +205,14 @@ class Router
       }
 
       $args = [];
+
+      // Reflection
+      $reflection = new ReflectionFunction($route['controller']);
+      foreach ($reflection->getParameters() as $parameter) {
+        $name = $parameter->getName();
+        $args[$name] = $route['variables'][$name] ?? '';
+      }
+
       return call_user_func_array($route['controller'], $args);
     } catch (Exception $error) {
       return new Response($error->getCode(), $error->getMessage());

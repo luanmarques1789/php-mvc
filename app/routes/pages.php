@@ -18,8 +18,8 @@ $router->get('/sobre', [
 ]);
 
 // Rota dinâmica
-$router->get('/pagina/10', [
-  function () {
-    return new Response(200, 'Página 10');
+$router->get('/pagina/{pageID}/{acao}', [
+  function ($pageID, $acao) {
+    return new Response(200, 'Página ' . $pageID . ' - ' . $acao);
   }
 ]);
