@@ -1,0 +1,6 @@
+# Liga o Rewrite permitindo mudar o comportamento padrão do Apache
+RewriteEngine on
+
+# Regra para o index
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,NC]

@@ -13,8 +13,6 @@ class Home extends Page
   {
     // View da home
     $content = View::render('home', [
-      'name' => 'Luan',
-      'age' => '25',
       'title' => 'Título da HOME'
     ]);
 

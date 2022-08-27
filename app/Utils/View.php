@@ -4,6 +4,24 @@ namespace App\Utils;
 
 class View
 {
+
+  /**
+   * Variáveis padrões da View
+   */
+  private static $vars = [];
+
+  /**
+   * Definir dados padrões da classe
+   *  
+   * @param array $vars 
+   * @return void
+   */
+  public static function init($vars = [])
+  {
+    self::$vars = $vars;
+  }
+
+
   /**
    * Método responspável por renderizar o conteúdo de uma view substituindo as variáveis contidas.
    * @param string $view Nome da view a ser renderizada.
@@ -15,13 +33,12 @@ class View
     // Conteúdo cru
     $contentView = self::getContentView($view);
 
+    // União de variáveis da View
+    $vars = array_merge(self::$vars, $vars);
+
     // Chaves do array de variáveis
     $keys = array_keys($vars);
     $keys = array_map(fn ($item) => '{{' . $item . '}}', $keys);
-
-    // echo '<pre>';
-    // print_r($keys);
-    // echo '</pre>';
 
     // Retorna o conteúdo da view renderizado
     return str_replace($keys, array_values($vars), $contentView);
