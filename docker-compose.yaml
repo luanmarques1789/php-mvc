@@ -1,0 +1,45 @@
+version: '3.8'
+
+networks:
+  php-net:
+    driver: bridge
+
+services:
+  php:
+    build: ./
+    restart: always
+    volumes:
+      - .:/var/www/html
+    ports:
+      - '5000:80'
+      - '443:443'
+    networks:
+      - php-net
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0.30
+    container_name: mysql-container
+    restart: always
+    ports:
+      - '${DB_PORT}:3306'
+    networks:
+      - php-net
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_USER: '${DB_USER}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - php-net
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql-container
