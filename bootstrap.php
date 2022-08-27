@@ -25,3 +25,7 @@ if (!defined('DB_NAME'))
 if (!defined('DB_HOST'))
   /** DATABASE'S HOST */
   define('DB_HOST', $_ENV['DB_HOST']);
+
+if (!defined('DB_PORT'))
+  /** DATABASE'S PORT */
+  define('DB_PORT', $_ENV['DB_PORT']);

@@ -17,6 +17,18 @@ $router->get('/sobre', [
   }
 ]);
 
+$router->get('/depoimentos', [
+  function () {
+    return  new Response(200, Pages\Testimony::getTestimonies());
+  }
+]);
+
+$router->post('/depoimentos', [
+  function ($request) {
+    return  new Response(200, Pages\Testimony::insertTestimony($request));
+  }
+]);
+
 // Rota dinâmica
 $router->get('/pagina/{pageID}/{acao}', [
   function ($pageID, $acao) {

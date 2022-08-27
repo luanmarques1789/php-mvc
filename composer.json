@@ -7,5 +7,9 @@
 		"files": [
 			"bootstrap.php"
 		]
+	},
+	"require": {
+		"vlucas/phpdotenv": "^5.4",
+		"william-costa/database-manager": "^0.1.0"
 	}
 }
