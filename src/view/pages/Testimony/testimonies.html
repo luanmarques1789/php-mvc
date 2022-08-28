@@ -1,11 +1,15 @@
 <h1>{{title}}</h1>
 <hr />
 
-<section id="testimonies">{{testimonies}}</section>
+<section id="testimonies">
+	{{testimonies}}
+	<div>{{pagination}}</div>
+</section>
+
 <hr />
 <section id="form">
 	<h3>Envie o seu depoimento:</h3>
-	<form method="post">
+	<form method="post" action="?page=1">
 		<div class="form-group">
 			<label for="name">Nome</label>
 			<input type="text" class="form-control" id="name" name="name" required />

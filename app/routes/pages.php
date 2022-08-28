@@ -18,8 +18,8 @@ $router->get('/sobre', [
 ]);
 
 $router->get('/depoimentos', [
-  function () {
-    return  new Response(200, Pages\Testimony::getTestimonies());
+  function ($request) {
+    return  new Response(200, Pages\Testimony::getTestimonies($request));
   }
 ]);
 

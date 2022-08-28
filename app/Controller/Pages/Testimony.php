@@ -5,17 +5,20 @@ namespace App\Controller\Pages;
 use \App\Utils\View;
 use \App\Http\Request;
 use \App\Models\Entities\Testimony as EntityTestimony;
+use \WilliamCosta\DatabaseManager\Pagination;
 
 class Testimony extends Page
 {
   /**
    * Método responsável por retornar a `view` de depoimentos.
+   * @param Request $request Instância de requisição
    */
-  public static function getTestimonies()
+  public static function getTestimonies($request)
   {
     $content = View::render('Testimony/testimonies', [
       'title' => 'Depoimentos',
-      'testimonies' => self::getTestimoniesItems(),
+      'testimonies' => self::getTestimoniesItems($request, $pagination),
+      'pagination' => parent::getPagination($request, $pagination),
     ]);
 
     // Retorna a view da página
@@ -24,16 +27,28 @@ class Testimony extends Page
 
   /**
    * Obter renderização dos itens de depoimentos para a página
-   *
+   * @param Request $request Instância de requisição
+   * @param Pagination $pagination Instância de Pagination
    * @return string
    */
-  private static function getTestimoniesItems()
+  private static function getTestimoniesItems($request, &$pagination)
   {
     // Depoimentos
     $items = '';
 
-    // Resultado da consuta da tabela de depoimentos
-    $tableRows = EntityTestimony::getTestimonies(order: 'id DESC');
+    // Quantidade total de registros
+    $totalRows = EntityTestimony::getTestimonies(fields: 'COUNT(*) as total')->fetchObject()->total;
+
+    // Obtendo a página atual
+    $queryParams = $request->getQueryParams();
+    $currentPage = $queryParams['page'] ?? 1;
+
+    // Instância de paginação
+    $pagination = new Pagination($totalRows, $currentPage, 2);
+
+
+    // Resultado da consulta da tabela de depoimentos
+    $tableRows = EntityTestimony::getTestimonies(order: 'id DESC', limit: $pagination->getLimit());
 
     // Concatenando depoimentos
     while ($testimony = $tableRows->fetchObject(EntityTestimony::class)) {
@@ -51,19 +66,20 @@ class Testimony extends Page
    * Inserir um depoimento
    *
    * @param Request $request
-   * @return string 
+   * @return string Retorna a página de listagem de depoimentos após inserção de depoimento
    */
   public static function insertTestimony($request)
   {
     // Dados do método POST
     $postVars = $request->getPostVars();
 
-    // Nava instância de depoimento
+    // Nova instância de depoimento
     $testimony = new EntityTestimony();
     $testimony->name = $postVars['name'];
     $testimony->message = $postVars['message'];
     $testimony->register();
 
-    return self::getTestimonies();
+    // Retorna a página de listagem de depoimentos
+    return self::getTestimonies($request);
   }
 }
