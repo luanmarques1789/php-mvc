@@ -43,6 +43,9 @@ class Testimony
    */
   public function register()
   {
+    // Definindo timezone 
+    date_default_timezone_set('America/Sao_Paulo');
+    // Formatando data
     $this->date = date('Y-m-d H:i:s');
 
     // Inserindo depoimento no banco de dados
