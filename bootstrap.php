@@ -29,3 +29,7 @@ if (!defined('DB_HOST'))
 if (!defined('DB_PORT'))
   /** DATABASE'S PORT */
   define('DB_PORT', $_ENV['DB_PORT']);
+
+if (!defined('MAINTENANCE'))
+  /** PAGE MAINTENANCE */
+  define('MAINTENANCE', $_ENV['MAINTENANCE']);

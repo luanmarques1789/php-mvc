@@ -23,7 +23,7 @@ class View
 
 
   /**
-   * Método responspável por renderizar o conteúdo de uma view substituindo as variáveis contidas.
+   * Método responsável por renderizar o conteúdo de uma view substituindo as variáveis contidas.
    * @param string $view Nome da view a ser renderizada.
    * @param (int|string)[] $vars Variáveis de conteúdo dinâmico.
    * @return string Conteúdo da view renderizada.

@@ -2,9 +2,10 @@
 
 namespace App\Http;
 
-use \Closure;
+use Closure;
 use Exception;
 use ReflectionFunction;
+use App\Http\Middleware\Queue as MiddlewareQueue;
 
 class Router
 {
@@ -74,6 +75,9 @@ class Router
         unset($params[$key]);
       }
     }
+
+    // Middlewares da rota
+    $params['middlewares'] = $params['middlewares'] ?? [];
 
     // Variáveis da rota
     $params['variables'] = [];
@@ -193,7 +197,7 @@ class Router
   /**
    * Executar a rota atual
    *
-   * @return Response
+   * @return Response Retorna a execução de fila de middlewares
    */
   public function runRoute()
   {
@@ -213,7 +217,8 @@ class Router
         $args[$name] = $route['variables'][$name] ?? '';
       }
 
-      return call_user_func_array($route['controller'], $args);
+      // Retorna a execução de fila de middlewares 
+      return (new MiddlewareQueue($route['middlewares'], $route['controller'], $args))->next($this->request);
     } catch (Exception $error) {
       return new Response($error->getCode(), $error->getMessage());
     }
