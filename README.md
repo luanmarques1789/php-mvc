@@ -1,6 +1,6 @@
 # PHP MVC
 
-Este projeto implementa o _pattern_ `MVC` (do inglês, _Model-View-Controller_) na linguagem PHP. Ademais, ele é inspirado na série de vídeos `MVC em PHP` do canal WDEV do programador brasileiro [William Costa](https://github.com/william-costa).
+Este projeto implementa o _pattern_ `MVC` (do inglês, _Model-View-Controller_) na linguagem PHP. Ademais, ele é inspirado na série de vídeos `MVC em PHP` do canal WDEV do programador brasileiro [@William Costa](https://github.com/william-costa).
 
 [Playlist](https://www.youtube.com/watch?v=7fxguLAebl4&list=PL_zkXQGHYosGQwNkMMdhRZgm4GjspTnXs)
 
