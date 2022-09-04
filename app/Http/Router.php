@@ -233,4 +233,19 @@ class Router
   {
     return $this->url . $this->getUri();
   }
+
+  /**
+   * Redirecionar URL
+   *
+   * @param string $route Endpoint para redirecionamento
+   * @return void
+   */
+  public function redirect($route)
+  {
+    $fullUrl = $this->url . $route;
+
+    // Executa o redirect
+    header("location: {$fullUrl}");
+    exit;
+  }
 }

@@ -39,14 +39,14 @@ class Page
       $link = $cleanUrl . '?' . http_build_query($queryParams);
 
       // View
-      $links .= View::render('Pagination/link', [
+      $links .= View::render('pages/Pagination/link', [
         'pageNumber' => $page['page'],
         'link' => $link,
         'active' => $page['current'] ? 'active' : ''
       ]);
     }
 
-    return View::render('Pagination/box', [
+    return View::render('pages/Pagination/box', [
       'links' => $links
     ]);
   }
@@ -58,7 +58,7 @@ class Page
    */
   public static function getPage($title, $content)
   {
-    return View::render('page', [
+    return View::render('pages/page', [
       'title' => $title,
       'content' => $content,
       'header' => self::getHeader(),
@@ -74,7 +74,7 @@ class Page
    */
   private static function getHeader()
   {
-    return View::render('header');
+    return View::render('pages/header');
   }
   /**
    * Renderiza o rodapé da página
@@ -83,6 +83,6 @@ class Page
    */
   private static function getFooter()
   {
-    return View::render('footer');
+    return View::render('pages/footer');
   }
 }

@@ -7,6 +7,7 @@ class View
 
   /**
    * Variáveis padrões da View
+   * @var array
    */
   private static $vars = [];
 
@@ -25,7 +26,7 @@ class View
   /**
    * Método responsável por renderizar o conteúdo de uma view substituindo as variáveis contidas.
    * @param string $view Nome da view a ser renderizada.
-   * @param (int|string)[] $vars Variáveis de conteúdo dinâmico.
+   * @param array $vars Variáveis de conteúdo dinâmico.
    * @return string Conteúdo da view renderizada.
    */
   public static function render($view, $vars = [])
@@ -49,7 +50,7 @@ class View
    */
   private static function getContentView($view)
   {
-    $file = __DIR__ . '/../../src/view/pages/' . $view . '.html';
+    $file = __DIR__ . '/../../src/view/' . $view . '.html';
     return file_exists($file) ? file_get_contents($file) : '';
   }
 }
