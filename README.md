@@ -23,24 +23,18 @@ Contudo, é importante ressaltar que com o Docker **NÃO** será possível debug
 
 ### Etapas
 
-1. Gere imagem da aplicação via Dockerfile:
-
-```bash
-docker build .
-```
-
-2. Execute os _multi-containers_ via Docker Compose:
+1. Execute os _multi-containers_ via Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-3. Execute o script SQL dentro do _container_ do MySQL via Docker:
+2. Execute o script SQL dentro do _container_ do MySQL via Docker:
 
 ```bash
 docker exec -i mysql-container mysql -h mysql-container -u<<usuario>> -p<<senha>> <script.sql
 ```
 
-4. Insira os dados das variáveis de ambiente no arquivo `.env.example` e, após, renomeie para `.env` apenas.
+3. Insira os dados das variáveis de ambiente no arquivo `.env.example` e, após, renomeie para `.env` apenas.
 
-5. Abra o navegador e digite o URL do projeto que foi definido no arquivo de variáveis de ambiente na etapa anterior.
+4. Abra o navegador e digite o URL do projeto que foi definido no arquivo de variáveis de ambiente na etapa anterior.
