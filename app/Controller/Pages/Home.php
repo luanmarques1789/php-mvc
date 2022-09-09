@@ -12,7 +12,7 @@ class Home extends Page
   public static function getHome()
   {
     // View da home
-    $content = View::render('home', [
+    $content = View::render('Pages/index', [
       'title' => 'Título da HOME'
     ]);
 

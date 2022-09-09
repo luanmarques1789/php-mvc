@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\Page;
-use App\Session\Admin\Login as LoginSession;
 use App\Http\Request;
 use App\Models\Entities\User;
+use App\Session\Admin\Login as LoginSession;
 use App\Utils\View;
 
 class Login extends Page
@@ -20,10 +20,8 @@ class Login extends Page
    */
   public static function getLogin($request, $errorMessage = null)
   {
-    $content = View::render('admin/login/login', [
-      'status' => !is_null($errorMessage) ? View::render('admin/login/status', [
-        'message' => $errorMessage
-      ]) : ''
+    $content = View::render('Admin/Login/login', [
+      'status' => !is_null($errorMessage) ? Alert::getError($errorMessage) : ''
     ]);
 
     return parent::getPage('Login', $content);

@@ -1,0 +1,40 @@
+<h1>{{title}}</h1>
+<hr />
+<a href="{{URL}}/admin/testimonies">
+	<button type="button" class="btn btn-warning">Voltar</button>
+</a>
+<hr />
+{{status}}
+<form method="post">
+	<div class="form-group mt-3">
+		<label for="name">Nome</label>
+		<input
+			type="text"
+			class="form-control"
+			id="name"
+			name="name"
+			value="{{name}}"
+			required
+		/>
+	</div>
+
+	<div class="form-group mt-3">
+		<label for="message">Mensagem</label>
+		<textarea
+			class="form-control"
+			name="message"
+			id="message"
+			cols="30"
+			rows="10"
+			required
+		>
+{{message}}
+	</textarea
+		>
+	</div>
+
+	<div class="form-group mt-3">
+		<button class="btn btn-success" type="submit">Enviar</button>
+	</div>
+</form>
+<hr />

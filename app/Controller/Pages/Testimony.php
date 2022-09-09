@@ -15,7 +15,7 @@ class Testimony extends Page
    */
   public static function getTestimonies($request)
   {
-    $content = View::render('pages/Testimony/testimonies', [
+    $content = View::render('Pages/Testimony/testimonies', [
       'title' => 'Depoimentos',
       'testimonies' => self::getTestimoniesItems($request, $pagination),
       'pagination' => parent::getPagination($request, $pagination),
@@ -51,13 +51,14 @@ class Testimony extends Page
     $tableRows = EntityTestimony::getTestimonies(order: 'id DESC', limit: $pagination->getLimit());
 
     // Concatenando depoimentos
-    while ($testimony = $tableRows->fetchObject(EntityTestimony::class)) {
-      $items .= View::render('pages/Testimony/item', [
-        'name' => $testimony->nome,
-        'date' => date('d/m/Y H:i:s', strtotime($testimony->data)),
-        'message' => $testimony->mensagem,
+    while ($anTestimonyRow = $tableRows->fetchObject(EntityTestimony::class)) {
+      $items .= View::render('Pages/Testimony/item', [
+        'name' => $anTestimonyRow->nome,
+        'date' => date('d/m/Y H:i:s', strtotime($anTestimonyRow->data)),
+        'message' => $anTestimonyRow->mensagem,
       ]);
     }
+
 
     return $items;
   }
@@ -76,8 +77,8 @@ class Testimony extends Page
     // Nova instância de depoimento
     $testimony = new EntityTestimony();
 
-    $testimony->name = $postVars['name'];
-    $testimony->message = $postVars['message'];
+    $testimony->nome = $postVars['name'];
+    $testimony->mensagem = $postVars['message'];
     $testimony->register();
 
     // Retorna a página de listagem de depoimentos

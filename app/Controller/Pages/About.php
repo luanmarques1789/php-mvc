@@ -11,7 +11,7 @@ class About extends Page
    */
   public static function getAbout()
   {
-    $content = View::render('about', []);
+    $content = View::render('Pages/about', []);
 
     // Retorna a view da página
     return parent::getPage('About', $content);
