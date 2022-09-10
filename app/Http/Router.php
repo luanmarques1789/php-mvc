@@ -82,15 +82,15 @@ class Router
     // Variáveis da rota
     $params['variables'] = [];
 
-    // Pattern de validação das variáveis de rotas
+    // Pattern de validação de rotas dinâmicas
     $varPattern = '/{(.*?)}/';
     if (preg_match_all($varPattern, $route, $matches)) {
       $route = preg_replace($varPattern, '(.*?)', $route);
       $params['variables'] = $matches[1];
     }
 
-    // Padrão de validação do URL
-    $routePattern = '/^' . str_replace('/', '\/', $route) . '$/';
+    // Padrão/formato de validação do URL
+    $routePattern = '/^' . str_replace('/', '\/', $route) . '\/?$/';
 
     // Adiciona a rota
     $this->routes[$routePattern][$method] = $params;
