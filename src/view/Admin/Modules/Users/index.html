@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+<hr />
+<a href="{{URL}}/admin/users/new">
+	<button type="button" class="btn btn-success">{{buttonText}}</button>
+</a>
+<hr />
+<h3>Lista de usuários cadastrados no sistema</h3>
+{{status}}
+<table class="table table-light table-striped padding2">
+	<thead>
+		<tr>
+			<th class="col-1">ID</th>
+			<th class="col-4">Nome</th>
+			<th class="col-5">Email</th>
+			<th class="col-2">Ações</th>
+		</tr>
+	</thead>
+	<tbody class="table-group-divider">
+		{{items}}
+	</tbody>
+</table>
+{{pagination}}

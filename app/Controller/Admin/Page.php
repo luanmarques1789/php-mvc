@@ -78,6 +78,7 @@ class Page
     }
 
     return View::render('Admin/Menu/box', [
+      'brand' => 'MVC',
       'links' => $links
     ]);
   }
