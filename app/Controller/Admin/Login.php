@@ -37,13 +37,13 @@ class Login extends Page
   {
     $postVars = $request->getPostVars();
     $email = $postVars['email'] ?? '';
-    $senha = $postVars['senha'] ?? '';
+    $password = $postVars['password'] ?? '';
 
     // Busca usuário pelo e-mail
     $user = User::getUserByEmail($email);
 
     // Autenticação email e senha de usuário
-    if (!$user instanceof User || !password_verify($senha, $user->senha)) {
+    if (!$user instanceof User || !password_verify(SALT . $password, $user->senha)) {
       return self::getLogin($request, 'Email ou senha inválidos');
     }
 
