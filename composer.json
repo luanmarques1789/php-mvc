@@ -1,5 +1,23 @@
 {
 	"name": "luan/php-mvc",
+	"description": "Confection of generic pattern MVC (Model-View-Controller) for language PHP",
+	"type": "project",
+	"keywords": [
+		"MVC",
+		"CRUD"
+	],
+	"readme": "./README.md",
+	"authors": [
+		{
+			"name": "Luan Matheus Marques",
+			"email": "dev.luanmarques@gmail.com",
+			"homepage": "https://www.linkedin.com/in/luanmarques1789/",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/luanmarques1789/php-mvc/issues"
+	},
 	"autoload": {
 		"psr-4": {
 			"App\\": "app/"
