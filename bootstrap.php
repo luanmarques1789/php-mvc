@@ -33,3 +33,7 @@ if (!defined('DB_PORT'))
 if (!defined('MAINTENANCE'))
   /** PAGE MAINTENANCE */
   define('MAINTENANCE', $_ENV['MAINTENANCE']);
+
+if (!defined('SALT'))
+  /** SALT TECHNIQUE */
+  define('SALT', $_ENV['SALT']);
