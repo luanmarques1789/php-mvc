@@ -21,12 +21,13 @@ class Testimony extends Page
   {
     $content = View::render('Admin/Modules/Testimonies/index', [
       'items' => self::getTestimoniesItems($request, $pagination),
+      'buttonText' => 'Cadastrar depoimento',
       'pagination' => parent::getPagination($request, $pagination),
       'status' => self::getStatus($request)
 
     ]);
 
-    return parent::getPanel('Home - Admin', $content, 'testimonies');
+    return parent::getPanel('Depoimentos - Admin', $content, 'testimonies');
   }
 
   private static function getTestimoniesItems($request, &$pagination)
@@ -49,12 +50,12 @@ class Testimony extends Page
     $tableRows = EntityTestimony::getTestimonies(order: 'id DESC', limit: $pagination->getLimit());
 
     // Concatenando depoimentos
-    while ($anTestimonyRow = $tableRows->fetchObject(EntityTestimony::class)) {
+    while ($aTestimonyRow = $tableRows->fetchObject(EntityTestimony::class)) {
       $items .= View::render('Admin/Modules/Testimonies/item', [
-        'id' => $anTestimonyRow->id,
-        'name' => $anTestimonyRow->nome,
-        'message' => $anTestimonyRow->mensagem,
-        'date' => date('d/m/Y H:i:s', strtotime($anTestimonyRow->data)),
+        'id' => $aTestimonyRow->id,
+        'name' => $aTestimonyRow->nome,
+        'message' => $aTestimonyRow->mensagem,
+        'date' => date('d/m/Y H:i:s', strtotime($aTestimonyRow->data)),
       ]);
     }
 
@@ -167,9 +168,9 @@ class Testimony extends Page
 
     switch ($queryParams['status']) {
       case 'created':
-        return Alert::getSuccess('Depoimento criado com sucesso!');
+        return Alert::getSuccess('Depoimento <b>criado</b> com sucesso!');
       case 'updated':
-        return Alert::getSuccess('Depoimento atualizado com sucesso!');
+        return Alert::getSuccess('Depoimento <b>atualizado</b> com sucesso!');
       case 'deleted':
         return Alert::getSuccess('Depoimento <b>excluído</b> com sucesso!');
       default:

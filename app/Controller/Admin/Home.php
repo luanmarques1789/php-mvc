@@ -19,6 +19,6 @@ class Home extends Page
   {
     $content = View::render('Admin/Modules/Home/index', []);
 
-    return parent::getPanel('Depoimentos', $content, 'home');
+    return parent::getPanel('Home - Admin', $content, 'home');
   }
 }
