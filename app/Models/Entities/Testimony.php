@@ -88,6 +88,7 @@ class Testimony
    * @param  string $where Condição para fazer filtragem de depoimentos
    * @param  string $order Ordem de exibição dos depoimentos
    * @param  string $limit Limite de linhas (registros) do banco de dados
+   * @param  string $fields Campos (atributos) da tabela
    * @return mixed
    */
   public static function getTestimonies($where = null, $order = null, $limit = null, $fields = '*')
