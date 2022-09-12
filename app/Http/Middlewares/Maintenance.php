@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middlewares;
 
 use App\Http\Request;
 use App\Http\Response;
 use Closure;
-use App\Session\Admin\Login as LoginSession;
 
-class RequireAdminLogout
+class Maintenance
 {
-
   /**
    * Executar as ações do middleware
    *
@@ -19,12 +17,12 @@ class RequireAdminLogout
    */
   public function handle($request, $next)
   {
-    // Verifica se o usuário está logado
-    if (LoginSession::isLogged()) {
-      // Se já estiver logado, redireciona para a página admin
-      $request->getRouter()->redirect('/admin');
+    // Verifica o estado de manutenção da página
+    if (MAINTENANCE == 'true') {
+      throw new \Exception("Página em manutenção. Tente mais tarde");
     }
 
+    // Executa o próximo nível de middleware
     return $next($request);
   }
 }

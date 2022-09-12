@@ -19,9 +19,9 @@ class Login
   {
     self::init();
 
-    $_SESSION['admin']['usuario'] = [
+    $_SESSION['user'] = [
       'id' => $user->id,
-      'nome' => $user->nome,
+      'name' => $user->nome,
       'email' => $user->email
     ];
 
@@ -51,7 +51,7 @@ class Login
   {
     self::init();
 
-    return isset($_SESSION['admin']['usuario']['id']);
+    return isset($_SESSION['user']['id']);
   }
 
   /**
@@ -63,8 +63,8 @@ class Login
   {
     self::init();
 
-    // Remove usuário da sessão
-    unset($_SESSION['admin']['usuario']);
+    // Destrói todos os dados da sessão atual
+    session_destroy();
 
     return true;
   }

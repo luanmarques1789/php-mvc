@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Controller\Admin\Page;
+use App\Controller;
 use App\Http\Request;
 use App\Models\Entities\User;
 use App\Session\Admin\Login as LoginSession;
@@ -20,7 +21,7 @@ class Login extends Page
    */
   public static function getLogin($request, $errorMessage = null)
   {
-    $content = View::render('Admin/Login/login', [
+    $content = View::render('Pages/Login/login', [
       'status' => !is_null($errorMessage) ? Alert::getError($errorMessage) : ''
     ]);
 
@@ -64,6 +65,6 @@ class Login extends Page
   {
     LoginSession::logout();
 
-    $request->getRouter()->redirect('/admin/login');
+    $request->getRouter()->redirect('/login');
   }
 }

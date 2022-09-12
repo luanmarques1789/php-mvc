@@ -3,8 +3,8 @@
 namespace App\Controller\Admin;
 
 
-use App\Http\Request;
 use App\Utils\View;
+use App\Http\Request;
 
 class Home extends Page
 {
@@ -17,7 +17,9 @@ class Home extends Page
    */
   public static function getHome($request)
   {
-    $content = View::render('Admin/Modules/Home/index', []);
+    $content = View::render('Admin/Modules/Home/index', [
+      'name' => $_SESSION['user']['name']
+    ]);
 
     return parent::getPanel('Home - Admin', $content, 'home');
   }

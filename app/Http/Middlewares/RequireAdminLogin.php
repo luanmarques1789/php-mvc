@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middlewares;
 
 use App\Http\Request;
 use App\Http\Response;
@@ -22,7 +22,7 @@ class RequireAdminLogin
     // Verifica se o usuário está logado
     if (!LoginSession::isLogged()) {
       // Se não estiver logado, redireciona o cliente para a tela de login
-      $request->getRouter()->redirect('/admin/login');
+      $request->getRouter()->redirect('/login');
     }
 
     return $next($request);

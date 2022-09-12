@@ -7,6 +7,7 @@ use App\Http\Request;
 use App\Models\Entities\Testimony as EntityTestimony;
 use App\Utils\View;
 use WilliamCosta\DatabaseManager\Pagination;
+use App\Controller\Alert;
 
 class Testimony extends Page
 {

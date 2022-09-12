@@ -6,10 +6,10 @@ use \App\Utils\View;
 use \WilliamCosta\DatabaseManager\Database;
 
 // Middlewares
-use \App\Http\Middleware\Queue as MiddlewareQueue;
-use \App\Http\Middleware\Maintenance;
-use \App\Http\Middleware\RequireAdminLogin;
-use \App\Http\Middleware\RequireAdminLogout;
+use \App\Http\Middlewares\Queue as MiddlewareQueue;
+use \App\Http\Middlewares\Maintenance;
+use \App\Http\Middlewares\RequireAdminLogin;
+use \App\Http\Middlewares\RequireAdminLogout;
 
 // Definindo configurações de banco de dados
 Database::config(

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Pages;
+namespace App\Controller;
 
 use App\Http\Request;
 use \App\Utils\View;

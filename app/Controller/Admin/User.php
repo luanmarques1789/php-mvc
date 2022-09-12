@@ -3,10 +3,11 @@
 namespace App\Controller\Admin;
 
 
+use App\Utils\View;
 use App\Http\Request;
 use App\Models\Entities\User as EntityUser;
-use App\Utils\View;
 use WilliamCosta\DatabaseManager\Pagination;
+use App\Controller\Alert;
 
 class User extends Page
 {
