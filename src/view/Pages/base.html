@@ -15,13 +15,39 @@
       window.history.replaceState(null, null, window.location);
     }
   </script>
+
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      margin-top: auto;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body class="bg-dark text-light">
-  <div class="container">
+  <div class="m-0 p-0">
     {{header}}
-    {{content}}
-    {{footer}}
+    <div class="m-5">
+      {{content}}
+    </div>
+    <!-- {{footer}} -->
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
