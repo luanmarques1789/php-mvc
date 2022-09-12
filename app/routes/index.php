@@ -31,3 +31,16 @@ $router->post('/depoimentos', [
     return  new Response(200, Controller\Testimony::insertTestimony($request));
   }
 ]);
+
+// Rotas de cadastro de usuário 
+$router->get('/register', [
+  function ($request) {
+    return  new Response(200, Controller\Register::getRegister($request));
+  }
+]);
+
+$router->post('/register', [
+  function ($request) {
+    return  new Response(200, Controller\Register::registerUser($request));
+  }
+]);

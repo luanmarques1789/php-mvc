@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Http\Request;
 use \App\Utils\View;
+use App\Http\Request;
 use WilliamCosta\DatabaseManager\Pagination;
 
 class Page

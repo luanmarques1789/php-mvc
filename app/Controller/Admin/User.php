@@ -95,16 +95,16 @@ class User extends Page
     $email = trim($postVars['email'] ?? '');
     $password = $postVars['password'] ?? '';
 
-    $user = EntityUser::getUserByEmail($email);
+    $userEmail = EntityUser::getUserByEmail($email);
     // Valida se o email já existe
-    if ($user instanceof EntityUser) {
+    if ($userEmail instanceof EntityUser) {
       $request->getRouter()->redirect('/admin/users/new?status=duplicated');
     }
 
     $user = new EntityUser();
     $user->nome = trim($name);
     $user->email = $email;
-    $user->senha = self::generatePassword($password);
+    $user->senha = EntityUser::generatePassword($password);
     $user->register();
 
     $request->getRouter()->redirect("/admin/users/{$user->id}/edit?status=created");
@@ -167,7 +167,7 @@ class User extends Page
 
     $user->nome = $postVars['name'] ? trim($postVars['name']) : $user->nome;
     $user->email = $email;
-    $user->senha = self::generatePassword($postVars['password'] ?? $user->senha);
+    $user->senha = EntityUser::generatePassword($postVars['password'] ?? $user->senha);
     $user->updateUser();
 
     $request->getRouter()->redirect("/admin/users/{$user->id}/edit?status=updated");
@@ -246,16 +246,5 @@ class User extends Page
     $user->deleteUser();
 
     $request->getRouter()->redirect("/admin/users?status=deleted");
-  }
-
-  /**
-   * Gera uma nova senha 
-   *
-   * @param  string $password
-   * @return string Retorna a nova senha
-   */
-  private static function generatePassword($password)
-  {
-    return password_hash(SALT . $password, PASSWORD_DEFAULT);
   }
 }

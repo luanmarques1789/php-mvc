@@ -3,7 +3,11 @@
 </head>
 
 <div class="d-flex justify-content-center align-items-center m-auto h-100 w-75">
-	<form method="post" class="card text-dark text-center w-100">
+	<form
+		method="post"
+		class="card text-dark text-center w-100"
+		style="box-shadow: 2px 1px 38px -11px rgba(255, 255, 255, 0.3)"
+	>
 		<fieldset>
 			<legend class="card-header">
 				<h1>Login</h1>
@@ -33,11 +37,15 @@
 					/>
 				</div>
 				<div class="mt-4">
-					<button type="submit" class="form-control btn btn-lg btn-primary">
+					<button
+						type="submit"
+						class="form-control btn btn-lg btn-primary shadow rounded"
+					>
 						Entrar
 					</button>
 				</div>
 			</div>
 		</fieldset>
+		<p>Usuário novo? <a href="{{URL}}/register">Cadastra-se aqui</a></p>
 	</form>
 </div>

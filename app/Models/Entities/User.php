@@ -107,4 +107,15 @@ class User
     // Excluindo usuário no banco de dados
     return (new Database('usuarios'))->delete(where: "id = {$this->id}");
   }
+
+  /**
+   * Gera uma nova senha 
+   *
+   * @param  string $password
+   * @return string Retorna a nova senha
+   */
+  public static function generatePassword($password)
+  {
+    return password_hash(SALT . $password, PASSWORD_DEFAULT);
+  }
 }
